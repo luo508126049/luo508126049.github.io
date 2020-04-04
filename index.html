@@ -152,6 +152,173 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java实现的简易打地鼠小游戏源码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/04/java%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E6%98%93%E6%89%93%E5%9C%B0%E9%BC%A0%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%BA%90%E7%A0%81/">java实现的简易打地鼠小游戏源码</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/04/java%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E6%98%93%E6%89%93%E5%9C%B0%E9%BC%A0%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%BA%90%E7%A0%81/" class="archive-article-date">
+  	<time datetime="2020-04-04T06:18:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>package dadishu;</p>
+<p>import javax.swing.<em>;<br>import java.awt.</em>;<br>import java.awt.event.MouseEvent;<br>import java.awt.event.MouseListener;<br>import java.util.Random;<br>//dadishu这个类继承了JFrame后面implements 两个委托<br>public class dadishu extends JFrame implements Runnable, MouseListener {<br>    JPanel jp;//存放用得到的图片<br>    JLabel[] dishu = new JLabel[9];//存放每只老鼠的位置<br>    JLabel jtf;//存放分数<br>    int fenshu=0;//分数初始化<br>    public dadishu(){</p>
+<pre><code>    this.setVisible(true);//设置是否显示这个页面
+    this.setBounds(200,100,1198,898);//设置页面的大小
+    this.setResizable(false);
+    jp=new JPanel();
+    this.setContentPane(jp);
+    jp.setLayout(null);
+    this.addMouseListener(this);//重载鼠标事件所做的委托
+    for(int i=0;i&lt;dishu.length;i++){
+        JLabel ds=new JLabel(new ImageIcon(&quot;老鼠.png&quot;));
+        dishu[i]=ds;
+        jp.add(ds);
+        dishu[i].setVisible(true);
+    }//展示每一这只老鼠
+    {
+
+        dishu[0].setBounds(214,151,189,207);
+        dishu[1].setBounds(501,151,189,207);
+        dishu[2].setBounds(819,151,189,207);
+        dishu[3].setBounds(152,386,189,207);
+        dishu[4].setBounds(527,386,189,207);
+        dishu[5].setBounds(870,386,189,207);
+        dishu[6].setBounds(112,665,189,207);
+        dishu[7].setBounds(501,665,189,207);
+        dishu[8].setBounds(912,665,189,207);//每一只老鼠的位置
+    }
+    jtf=new JLabel();
+    jtf.setBounds(776, 46,230,46);
+    jtf.setFont(new Font(&quot;&quot;, 20, 25));
+    jtf.setForeground(Color.RED);
+    jtf.setText(&quot;您的得分是：    分&quot;);
+    jtf.setVisible(true);                               //分数
+
+    JLabel fenshu=new JLabel(new ImageIcon(&quot;分数.png&quot;));
+    jp.add(fenshu);
+    fenshu.setBounds(310,23,582,95);
+    JLabel ditu = new JLabel(new ImageIcon(&quot;318252014081507210222241.jpg&quot;));
+    jp.add(ditu);
+    ditu.setBounds(0,0,1198,898);//分数和背景所在图片
+
+    Cursor c=Toolkit.getDefaultToolkit().createCustomCursor(Toolkit.getDefaultToolkit().createImage(&quot;锤子.png&quot;),
+            new Point(0,0), &quot;h&quot;);         //鼠标移动进图片以后所显示的模样
+    this.getContentPane().setCursor(c);
+    new Thread(this).start();         //启动线程
+
+}
+
+public static void main(String[] args) {
+    new dadishu();//主函数用来运行
+}
+
+
+@Override            //需要用到的重载函数
+public void run() {
+    while(true) {
+        for (int i = 0; i &lt; dishu.length; i++) {
+                dishu[i].setVisible(false);
+        }
+        Random r= new Random();
+        for(int i = 0;i&lt;r.nextInt(3);i++) {
+        dishu[r.nextInt(9)].setVisible(true);
+        }
+        try{
+            Thread.sleep(780);
+        }catch(InterruptedException e) {
+        e.printStackTrace();
+        }
+
+    }
+    }
+
+@Override
+public void mouseClicked(MouseEvent mouseEvent) {
+    Object object= mouseEvent.getSource();
+    if(object instanceof JLabel){
+        JLabel label=(JLabel)object;
+        if(label.getIcon()!=null){
+            fenshu=fenshu+5;
+            jtf.setText(&quot; &quot;+fenshu);
+        }
+        label.setIcon(null);
+    }
+}
+
+@Override
+public void mousePressed(MouseEvent mouseEvent) {
+    JLabel dishu=(JLabel) mouseEvent.getSource();
+    dishu.setVisible(false);
+}
+
+@Override
+public void mouseReleased(MouseEvent mouseEvent) {
+
+}
+
+@Override
+public void mouseEntered(MouseEvent mouseEvent) {
+
+}
+
+@Override
+public void mouseExited(MouseEvent mouseEvent) {
+
+}</code></pre><h2 id=""><a href="#" class="headerlink" title="}"></a>}</h2><hr>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/04/java%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E6%98%93%E6%89%93%E5%9C%B0%E9%BC%A0%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%BA%90%E7%A0%81/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-那些年我们没有读懂的古诗词" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

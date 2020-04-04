@@ -6,13 +6,17 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020/4 | Hexo</title>
+  <title>java实现的简易打地鼠小游戏源码 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/archives/2020/04/index.html">
+  <meta name="description" content="package dadishu; import javax.swing.;import java.awt.;import java.awt.event.MouseEvent;import java.awt.event.MouseListener;import java.util.Random;&#x2F;&#x2F;dadishu这个类继承了JFrame后面implements 两个委托public class da">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java实现的简易打地鼠小游戏源码">
+<meta property="og:url" content="http://yoursite.com/2020/04/04/java%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E6%98%93%E6%89%93%E5%9C%B0%E9%BC%A0%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%BA%90%E7%A0%81/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="package dadishu; import javax.swing.;import java.awt.;import java.awt.event.MouseEvent;import java.awt.event.MouseListener;import java.util.Random;&#x2F;&#x2F;dadishu这个类继承了JFrame后面implements 两个委托public class da">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-04T06:18:08.000Z">
+<meta property="article:modified_time" content="2020-04-04T06:33:48.588Z">
 <meta property="article:author" content="Y H Luo">
 <meta name="twitter:card" content="summary">
   
@@ -150,76 +154,260 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-java实现的简易打地鼠小游戏源码" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      java实现的简易打地鼠小游戏源码
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/04/java%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E6%98%93%E6%89%93%E5%9C%B0%E9%BC%A0%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%BA%90%E7%A0%81/" class="archive-article-date">
+
+        
+        <a href="/2020/04/04/java%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E6%98%93%E6%89%93%E5%9C%B0%E9%BC%A0%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%BA%90%E7%A0%81/" class="archive-article-date">
   	<time datetime="2020-04-04T06:18:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-04</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/04/java%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E6%98%93%E6%89%93%E5%9C%B0%E9%BC%A0%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%BA%90%E7%A0%81/">java实现的简易打地鼠小游戏源码</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>package dadishu;</p>
+<p>import javax.swing.<em>;<br>import java.awt.</em>;<br>import java.awt.event.MouseEvent;<br>import java.awt.event.MouseListener;<br>import java.util.Random;<br>//dadishu这个类继承了JFrame后面implements 两个委托<br>public class dadishu extends JFrame implements Runnable, MouseListener {<br>    JPanel jp;//存放用得到的图片<br>    JLabel[] dishu = new JLabel[9];//存放每只老鼠的位置<br>    JLabel jtf;//存放分数<br>    int fenshu=0;//分数初始化<br>    public dadishu(){</p>
+<pre><code>    this.setVisible(true);//设置是否显示这个页面
+    this.setBounds(200,100,1198,898);//设置页面的大小
+    this.setResizable(false);
+    jp=new JPanel();
+    this.setContentPane(jp);
+    jp.setLayout(null);
+    this.addMouseListener(this);//重载鼠标事件所做的委托
+    for(int i=0;i&lt;dishu.length;i++){
+        JLabel ds=new JLabel(new ImageIcon(&quot;老鼠.png&quot;));
+        dishu[i]=ds;
+        jp.add(ds);
+        dishu[i].setVisible(true);
+    }//展示每一这只老鼠
+    {
 
-        <div class="article-info info-on-right">
-          
-          
+        dishu[0].setBounds(214,151,189,207);
+        dishu[1].setBounds(501,151,189,207);
+        dishu[2].setBounds(819,151,189,207);
+        dishu[3].setBounds(152,386,189,207);
+        dishu[4].setBounds(527,386,189,207);
+        dishu[5].setBounds(870,386,189,207);
+        dishu[6].setBounds(112,665,189,207);
+        dishu[7].setBounds(501,665,189,207);
+        dishu[8].setBounds(912,665,189,207);//每一只老鼠的位置
+    }
+    jtf=new JLabel();
+    jtf.setBounds(776, 46,230,46);
+    jtf.setFont(new Font(&quot;&quot;, 20, 25));
+    jtf.setForeground(Color.RED);
+    jtf.setText(&quot;您的得分是：    分&quot;);
+    jtf.setVisible(true);                               //分数
 
+    JLabel fenshu=new JLabel(new ImageIcon(&quot;分数.png&quot;));
+    jp.add(fenshu);
+    fenshu.setBounds(310,23,582,95);
+    JLabel ditu = new JLabel(new ImageIcon(&quot;318252014081507210222241.jpg&quot;));
+    jp.add(ditu);
+    ditu.setBounds(0,0,1198,898);//分数和背景所在图片
+
+    Cursor c=Toolkit.getDefaultToolkit().createCustomCursor(Toolkit.getDefaultToolkit().createImage(&quot;锤子.png&quot;),
+            new Point(0,0), &quot;h&quot;);         //鼠标移动进图片以后所显示的模样
+    this.getContentPane().setCursor(c);
+    new Thread(this).start();         //启动线程
+
+}
+
+public static void main(String[] args) {
+    new dadishu();//主函数用来运行
+}
+
+
+@Override            //需要用到的重载函数
+public void run() {
+    while(true) {
+        for (int i = 0; i &lt; dishu.length; i++) {
+                dishu[i].setVisible(false);
+        }
+        Random r= new Random();
+        for(int i = 0;i&lt;r.nextInt(3);i++) {
+        dishu[r.nextInt(9)].setVisible(true);
+        }
+        try{
+            Thread.sleep(780);
+        }catch(InterruptedException e) {
+        e.printStackTrace();
+        }
+
+    }
+    }
+
+@Override
+public void mouseClicked(MouseEvent mouseEvent) {
+    Object object= mouseEvent.getSource();
+    if(object instanceof JLabel){
+        JLabel label=(JLabel)object;
+        if(label.getIcon()!=null){
+            fenshu=fenshu+5;
+            jtf.setText(&quot; &quot;+fenshu);
+        }
+        label.setIcon(null);
+    }
+}
+
+@Override
+public void mousePressed(MouseEvent mouseEvent) {
+    JLabel dishu=(JLabel) mouseEvent.getSource();
+    dishu.setVisible(false);
+}
+
+@Override
+public void mouseReleased(MouseEvent mouseEvent) {
+
+}
+
+@Override
+public void mouseEntered(MouseEvent mouseEvent) {
+
+}
+
+@Override
+public void mouseExited(MouseEvent mouseEvent) {
+
+}</code></pre><h2 id=""><a href="#" class="headerlink" title="}"></a>}</h2><hr>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/04/04/java%E5%AE%9E%E7%8E%B0%E7%9A%84%E7%AE%80%E6%98%93%E6%89%93%E5%9C%B0%E9%BC%A0%E5%B0%8F%E6%B8%B8%E6%88%8F%E6%BA%90%E7%A0%81/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/04/01/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E6%B2%A1%E6%9C%89%E8%AF%BB%E6%87%82%E7%9A%84%E5%8F%A4%E8%AF%97%E8%AF%8D/" class="archive-article-date">
-  	<time datetime="2020-04-01T12:41:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-01</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2020/04/01/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E6%B2%A1%E6%9C%89%E8%AF%BB%E6%87%82%E7%9A%84%E5%8F%A4%E8%AF%97%E8%AF%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">那些年我们没有读懂的古诗词</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/04/01/%E9%82%A3%E4%BA%9B%E5%B9%B4%E6%88%91%E4%BB%AC%E6%B2%A1%E6%9C%89%E8%AF%BB%E6%87%82%E7%9A%84%E5%8F%A4%E8%AF%97%E8%AF%8D/">那些年我们没有读懂的古诗词</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -242,8 +430,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
